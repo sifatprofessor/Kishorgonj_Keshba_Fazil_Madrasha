@@ -23,7 +23,6 @@ const PrincipleMessage: React.FC = () => {
             try {
                 const response = await axios.get(`${BaseURL}/api/principleAndFounder`);
                 setData(response.data);
-                console.log(response.data);
             } catch (err) {
                 console.error(err);
             } finally {

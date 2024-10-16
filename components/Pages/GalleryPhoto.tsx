@@ -24,7 +24,6 @@ export default function GalleryPhoto() {
             try {
                 const response = await axios.get(`${BaseURL}/api/gallery`);
                 setData(response.data);
-                console.log(response.data);
             } catch (err) {
                 console.error(err);
             } finally {

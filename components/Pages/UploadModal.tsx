@@ -20,9 +20,9 @@ export function UploadSection() {
 
     const time = new Date().toLocaleDateString();
 
-    console.log(time);
-    console.log(title);
-    console.log(pdfUrl);
+
+
+
 
     const handlePublishNotice = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -33,8 +33,7 @@ export function UploadSection() {
             file: pdfUrl,
         };
         try {
-            await axios.post(`${BaseURL}/api/noticepdf`, data).then((res) => {
-                console.log(res);
+            await axios.post(`${BaseURL}/api/noticepdf`, data).then(() => {
                 Swal.fire({
                     title: "Notice Published",
                     text: "Notice has been published successfully",
@@ -43,8 +42,8 @@ export function UploadSection() {
                 });
                 window.location.reload();
             });
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-            console.log(error);
             Swal.fire({
                 title: "Error",
                 text: "There was an error publishing the notice",
@@ -106,7 +105,6 @@ export function UploadSection() {
                         <UploadButton
                             endpoint="pdfUploader"
                             onClientUploadComplete={(res) => {
-                                console.log("Files: ", res[0].url);
                                 setPdfUrl(res[0].url);
                             }}
                             onUploadError={(error) => {

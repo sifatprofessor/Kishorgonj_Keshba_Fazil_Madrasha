@@ -35,7 +35,6 @@ const EventUpload: React.FC = () => {
         fetchData(); // Only called once due to empty dependency array
     }, [startLoading, stopLoading]);
 
-    console.log(data);
 
     const handleDeleteNotice = async (id: string) => {
         try {

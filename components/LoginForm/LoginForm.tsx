@@ -27,19 +27,16 @@ const LoginForm: React.FC = () => {
         setLoading(true);
         const email = (e.currentTarget.elements.namedItem("email") as HTMLInputElement).value;
         const password = (e.currentTarget.elements.namedItem("password") as HTMLInputElement).value;
-        console.log(email, password);
         const response = await signIn("credentials", {
             redirect: false,
             email,
             password,
         });
-        console.log(response);
 
         if (response?.error) {
             setLoading(false);
             toast.error("Login Fail!");
 
-            console.log(response?.error);
         } else {
             setLoading(false);
             toast.success("Successfully login!");

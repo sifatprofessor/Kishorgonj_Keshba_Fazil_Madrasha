@@ -17,7 +17,6 @@ interface ModalProps {
 
 export default function Modal1({ data }: ModalProps) {
     const [openModal, setOpenModal] = useState(false);
-    console.log(data);
     return (
         <div className="mx-auto w-fit" onClick={() => setOpenModal(true)}>
             <div

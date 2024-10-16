@@ -36,7 +36,6 @@ export const UseUpdateData: FC<UseUpdateDataProps> = ({ data }) => {
             role: data?.role,
         };
 
-        console.log(UpdateData);
 
         try {
             const response = await axios.patch(`${BaseURL}/api/principleAndFounder/${data?._id}`, UpdateData);
@@ -174,7 +173,6 @@ export const UseUpdateData: FC<UseUpdateDataProps> = ({ data }) => {
                                 <UploadButton
                                     endpoint="imageUploader"
                                     onClientUploadComplete={(res) => {
-                                        console.log("Files: ", res[0].url);
                                         setImageURL(res[0].url);
                                     }}
                                     onUploadError={(error) => {

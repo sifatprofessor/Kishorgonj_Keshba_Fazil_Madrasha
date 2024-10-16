@@ -3,7 +3,6 @@ import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
-    console.log("hit");
     await connect();
     const data = await noticePdf.find();
     return new NextResponse(JSON.stringify(data), {

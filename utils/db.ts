@@ -7,7 +7,7 @@ const connect = async (): Promise<any> => {
 
     try {
         await mongoose.connect(uri);
-        console.log("Mongo connection successfully established.");
+        // console.log("Mongo connection successfully established.");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
         return NextResponse.json({ message: "Error connecting to MongoDB", error: (error as Error).message }, { status: 500 });

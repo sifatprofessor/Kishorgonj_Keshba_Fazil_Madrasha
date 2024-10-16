@@ -25,7 +25,6 @@ const Principle: React.FC = () => {
             try {
                 const response = await axios.get<PrincipleData[]>(`${BaseURL}/api/principleAndFounder`);
                 setData(response.data);
-                console.log(response.data);
             } catch (err) {
                 console.error(err);
             } finally {

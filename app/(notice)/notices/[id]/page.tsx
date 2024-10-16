@@ -24,16 +24,12 @@ const PDFView = (props: PDFViewProps) => {
         axios.get(`http://localhost:3000/api/noticepdf/${id}`)
             .then(res => {
                 setData(res.data);
-                console.log("first", res.data);
-                console.log(res.data);
             })
             .catch(err => {
                 console.error(err);
             });
     }
         , [id]);
-    console.log(id);
-    console.log(data);
     return (
         <div>
             <button

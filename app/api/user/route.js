@@ -7,27 +7,26 @@ import { NextResponse } from "next/server";
 
 // Route to get all tasks
 export const GET = async () => {
-  await connect();
-  const data = await task.find();
-  return NextResponse.json(data, {status:200});
+    await connect();
+    const data = await task.find();
+    return NextResponse.json(data, { status: 200 });
 }
 
 export const POST = async (req) => {
-  try {
-    const database = await req.json()
-    console.log('receive from google', database)
-    await connect()
     try {
-      await user.create(database)
-      return new NextResponse("Task successfully created", {status: 200})
+        const database = await req.json()
+        await connect()
+        try {
+            await user.create(database)
+            return new NextResponse("Task successfully created", { status: 200 })
+        } catch (error) {
+            console.log(error)
+            return new NextResponse(error, { status: 500 })
+
+        }
+
     } catch (error) {
-      console.log(error)
-      return new NextResponse(error, {status: 500})
-      
+        console.log(error)
+        return new NextResponse("Internal Server Error", { status: 500 })
     }
-    
-  } catch (error) {
-    console.log(error)
-    return new NextResponse("Internal Server Error", {status: 500})
-  }
 }

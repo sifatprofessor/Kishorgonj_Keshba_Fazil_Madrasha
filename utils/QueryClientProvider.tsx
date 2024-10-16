@@ -24,9 +24,8 @@ interface QueryProviderProps {
 }
 
 export const QueryProvider = ({ children }: QueryProviderProps) => {
-    const [cart, setCart] = useState<any[]>([])
+    const [cart, setCart] = useState<unknown[]>([])
     const [price, setPrice] = useState<number>(0)
-    // console.log(cart)
     return (
         <QueryClientProvider client={queryClient}>
             <queryContext.Provider value={{ cart, setCart, price, setPrice }}>
