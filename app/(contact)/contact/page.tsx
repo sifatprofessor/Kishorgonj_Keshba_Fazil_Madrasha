@@ -8,8 +8,10 @@ const ContactPage: React.FC = () => {
             <TransitionEffects />
             <div className='min-h-[50vh]'>
                 <h1 className="text-4xl text-center mt-10">Contact Us</h1>
-                <div className="flex justify-center items-center h-full">
-                    <h1 className="text-2xl">No Data Found</h1>
+                <div className="flex justify-center items-center h-full flex-col mt-8 font-serif">
+                    <h1 className="text-2xl">Mobile: +880194-803612</h1>
+                    <h1 className="text-2xl">Email: kiskfm125024@gmail.com  </h1>
+                    <h1 className="text-2xl">ডাকঘর ও উপজেলা: কিশোরগঞ্জ, জেলা: নীলফামারী</h1>
                 </div>
             </div>
         </>

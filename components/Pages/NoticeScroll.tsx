@@ -11,6 +11,7 @@ import UseLoader from "../Loader/useLoader";
 interface Notice {
     title: string;
     file: string;
+    _id: string;
 }
 
 interface NoticeSliderProps {
@@ -38,9 +39,9 @@ const NoticeSlider: React.FC<NoticeSliderProps> = ({ notices }) => {
     }, [duplicatedNotices.length]);
 
     return (
-        <div className="overflow-hidden h-64 relative">
+        <div className="overflow-hidden relative">
             <div
-                className="transition-transform ease-in-out duration-3000"
+                className="transition-transform ease-in-out duration-1000"
                 style={{
                     transform: `translateY(-${(index * 100) / duplicatedNotices.length}%)`,
                 }}
@@ -51,8 +52,8 @@ const NoticeSlider: React.FC<NoticeSliderProps> = ({ notices }) => {
                         className="h-auto flex items-start justify-start bg-transparent"
                     >
                         <div className="flex items-center justify-between w-full Navbar mt-2 py-1 rounded-lg">
-                            <p className="text-lg w-full px-2 py-1 rounded-l-lg">{idx + 1}: {notice?.title}</p>
-                            <Link href={notice?.file}>
+                            <p className="text-lg w-full px-2 py-1 rounded-l-lg"><span className="font-serif">{idx + 1}:</span> {notice?.title}</p>
+                            <Link href={`/notices/${notice?._id}`}>
                                 <button className="px-2 text-lg rounded-r-lg">
                                     <FaFilePdf className="text-3xl" />
                                 </button>
@@ -74,7 +75,7 @@ const ScrollNotice: React.FC = () => {
             startLoading(); // Show loading indicator
             try {
                 const response = await axios.get(`${BaseURL}/api/noticepdf`);
-                setNotices(response.data);
+                setNotices(response.data.reverse()); // Reverse the notices array
             } catch (err) {
                 console.error(err);
             } finally {
@@ -88,7 +89,7 @@ const ScrollNotice: React.FC = () => {
     console.log(notices);
 
     return (
-        <main className="p-4 h-96">
+        <main className="p-4 h-[450px]">
             <div className="flex items-center justify-between gap-4 mb-2">
                 <button className="text-2xl">Notice Board</button>
                 <Link href="/notices">
