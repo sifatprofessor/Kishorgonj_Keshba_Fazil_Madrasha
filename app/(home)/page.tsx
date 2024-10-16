@@ -23,7 +23,6 @@ interface UserDataType {
 
 const Home: React.FC = () => {
     const [data, setData] = useState<UserDataType[]>([]);
-    console.log(BaseURL);
 
     const [loadingIndicator, startLoading, stopLoading] = UseLoader();
     const [UserData, setUserData] = useState<UserDataType[]>([]);

@@ -42,7 +42,6 @@ const Page: React.FC = () => {
     }, [startLoading, stopLoading]);
 
     const handleDeleteNotice = async (id: string) => {
-        console.log(id);
         try {
             const res = await axios.delete(`${BaseURL}/api/noticepdf/${id}`);
             setData(data.filter((item) => item._id !== id));

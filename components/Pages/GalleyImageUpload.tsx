@@ -28,9 +28,6 @@ export function GalleryImageUpload() {
         setTime(timeStr);
     }, [timeStr]);
 
-    console.log(time);
-    console.log(title);
-    console.log(pdfUrl);
 
     const handlePublishNotice = async (e: FormEvent) => {
         e.preventDefault();
@@ -39,10 +36,8 @@ export function GalleryImageUpload() {
             img: pdfUrl,
             date: time,
         };
-        console.log(data);
         try {
-            await axios.post(`${BaseURL}/api/gallery`, data).then((res) => {
-                console.log(res);
+            await axios.post(`${BaseURL}/api/gallery`, data).then(() => {
                 Swal.fire({
                     title: "Notice Published",
                     text: "Image been published successfully",
@@ -150,7 +145,6 @@ export function GalleryImageUpload() {
                         <UploadButton
                             endpoint="imageUploader"
                             onClientUploadComplete={(res) => {
-                                console.log("Files: ", res[0].url);
                                 setPdfUrl(res[0].url);
                             }}
                             onUploadError={(error) => {

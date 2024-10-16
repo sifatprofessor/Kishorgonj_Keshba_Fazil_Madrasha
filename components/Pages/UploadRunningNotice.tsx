@@ -27,9 +27,6 @@ export function UploadRunningNotice() {
         setTime(timeStr);
     }, [timeStr]);
 
-    console.log(time);
-    console.log(title);
-    console.log(pdfUrl);
 
     const handlePublishNotice = async (e: FormEvent) => {
         e.preventDefault();
@@ -40,7 +37,6 @@ export function UploadRunningNotice() {
         };
         try {
             await axios.post(`${BaseURL}/api/notice`, data).then((res) => {
-                console.log(res);
                 Swal.fire({
                     title: "Notice Published",
                     text: "Notice has been published successfully",

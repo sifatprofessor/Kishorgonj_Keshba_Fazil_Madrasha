@@ -32,7 +32,6 @@ const Gallery: React.FC = () => {
             try {
                 const response = await axios.get(`${BaseURL}/api/gallery`);
                 setData(response.data);
-                console.log(response.data);
             } catch (err) {
                 console.error(err);
             } finally {
@@ -44,7 +43,6 @@ const Gallery: React.FC = () => {
     }, [startLoading, stopLoading]);
 
     const handleDeleteNotice = async (id: string) => {
-        console.log(id);
         try {
             await axios.delete(`${BaseURL}/api/gallery/${id}`).then((res) => {
                 setData(data.filter((item) => item._id !== id));

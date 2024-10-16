@@ -21,12 +21,9 @@ interface NoticeSliderProps {
 const NoticeSlider: React.FC<NoticeSliderProps> = ({ notices }) => {
     const [index, setIndex] = useState<number>(0);
 
-    console.log(notices);
 
     // Create a duplicated list to enable infinite scroll effect
     const duplicatedNotices = [...notices, ...notices];
-
-    console.log(duplicatedNotices);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -86,7 +83,6 @@ const ScrollNotice: React.FC = () => {
         fetchData(); // Only called once due to empty dependency array
     }, [startLoading, stopLoading]);
 
-    console.log(notices);
 
     return (
         <main className="p-4 h-[450px]">

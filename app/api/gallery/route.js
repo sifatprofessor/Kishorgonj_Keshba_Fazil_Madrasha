@@ -19,7 +19,6 @@ export const POST = async (req) => {
 };
 
 export const GET = async () => {
-    console.log("hit");
     await connect();
     const data = await photo.find();
     return new NextResponse(JSON.stringify(data), {
