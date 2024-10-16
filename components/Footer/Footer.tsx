@@ -1,4 +1,3 @@
-import Image from "next/image";
 import "./Footer.css";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa6";
 import Link from "next/link";

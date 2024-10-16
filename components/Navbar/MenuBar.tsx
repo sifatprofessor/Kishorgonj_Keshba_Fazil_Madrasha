@@ -12,7 +12,6 @@ import {
     Menu,
     MenuHandler,
     MenuList,
-    MenuItem,
 } from "@material-tailwind/react";
 import {
     ChevronDownIcon,

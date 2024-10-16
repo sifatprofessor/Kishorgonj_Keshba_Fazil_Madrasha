@@ -1,11 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { BaseURL } from "@/utils/constant";
-import { UploadButton } from "@/utils/uploadthing";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
     Card,
     Input,
-    Checkbox,
     Button,
     Typography,
     PopoverContent,
@@ -13,11 +11,8 @@ import {
     PopoverHandler,
 } from "@material-tailwind/react";
 import axios from "axios";
-import Link from "next/link";
 import { useEffect, useState, FormEvent } from "react";
 import { DayPicker } from "react-day-picker";
-import { FaFilePdf } from "react-icons/fa6";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 export function UploadRunningNotice() {
@@ -66,8 +61,8 @@ export function UploadRunningNotice() {
     };
 
     return (
-        <Card color="transparent" shadow={false}>
-            <Button className="text-center mt-8 mb-2 w-80 max-w-screen-lg mx-auto sm:w-96">
+        <Card placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }} color="transparent" shadow={false}>
+            <Button placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }} className="text-center mt-8 mb-2 w-80 max-w-screen-lg mx-auto sm:w-96">
                 Upload Notice
             </Button>
             <form className="mt-8 mb-2 w-80 max-w-screen-lg mx-auto sm:w-96">

@@ -7,6 +7,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 interface PrincipleData {
+    _id: string;
+    role: string;
     name: string;
     designation: string;
     image: string;

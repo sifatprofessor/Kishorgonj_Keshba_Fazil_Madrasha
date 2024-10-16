@@ -1,4 +1,4 @@
-import FBMessanger from "@/components/FBMessanger/FBMessanger";
+// import FBMessanger from "@/components/FBMessanger/FBMessanger";
 // import { CartProvider } from "@/utils/Cart/CartContext";
 // import { QueryProvider } from "@/utils/QueryClientProvider";
 import AuthProvider from "@/utils/SessionProvider";
@@ -7,7 +7,7 @@ import "./globals.css";
 import Script from "next/script";
 import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
+export async function generateMetadata({ }: { params: unknown }): Promise<Metadata> {
     return {
         title: "Kishorgonj Keshba Fazil Madrasha",
         description: "Created by MD. Abdur Rahman Sifat",

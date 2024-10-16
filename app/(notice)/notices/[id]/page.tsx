@@ -14,7 +14,11 @@ interface PDFViewProps {
 const PDFView = (props: PDFViewProps) => {
     const router = useRouter();
     const { id } = props.params;
-    const [data, setData] = React.useState<any>(null);
+    interface NoticeData {
+        file: string;
+    }
+
+    const [data, setData] = React.useState<NoticeData | null>(null);
 
     useEffect(() => {
         axios.get(`http://localhost:3000/api/noticepdf/${id}`)

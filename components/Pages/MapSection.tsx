@@ -1,5 +1,4 @@
 import React from "react";
-import Calendar from "react-calendar";
 import { CustomCalendar } from "./Calender";
 
 const MapSection: React.FC = () => {

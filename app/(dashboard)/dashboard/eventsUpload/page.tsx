@@ -50,7 +50,7 @@ const EventUpload: React.FC = () => {
         <div>
             <UploadRunningNotice />
             {data.length > 0 ? (
-                <Card className="h-full w-full overflow-scroll mt-10">
+                <Card className="h-full w-full overflow-scroll mt-10" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
                     <table className="w-full min-w-max table-auto text-left">
                         <thead>
                             <tr>
@@ -63,6 +63,7 @@ const EventUpload: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal leading-none opacity-70"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {head}
                                         </Typography>
@@ -78,6 +79,7 @@ const EventUpload: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {notice?.date}
                                         </Typography>
@@ -87,12 +89,13 @@ const EventUpload: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {notice?.description}
                                         </Typography>
                                     </td>
                                     <td className="p-4">
-                                        <Button onClick={() => handleDeleteNotice(notice._id)}>
+                                        <Button placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }} onClick={() => handleDeleteNotice(notice._id)}>
                                             Delete
                                         </Button>
                                     </td>

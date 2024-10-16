@@ -5,10 +5,10 @@ import Footer from "@/components/Footer/Footer";
 import { ReactNode } from "react";
 
 interface MetadataParams {
-    params: Record<string, any>;
+    params: Record<string, unknown>;
 }
 
-export async function generateMetadata({ params }: MetadataParams) {
+export async function generateMetadata({ }: MetadataParams) {
     return {
         title: `Kishorgonj Keshba Fazil Madrasha | Home`,
         description: "Created by MD. Abdur Rahman Sifat",

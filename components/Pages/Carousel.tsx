@@ -36,8 +36,11 @@ export function CarouselDefault() {
             {images.length > 0 ? (
                 <Carousel
                     loop={true}
-                    autoplay={0.5}
+                    autoplay={true}
                     className="rounded-xl h-[450px] w-fit mb-4"
+                    placeholder=""
+                    onPointerEnterCapture={() => { }}
+                    onPointerLeaveCapture={() => { }}
                 >
                     {images.map((image, index) => (
                         <img

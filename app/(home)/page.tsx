@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 /* eslint-disable @next/next/no-img-element */
 import Banner from "@/components/Pages/Banner";
@@ -13,6 +14,10 @@ import TransitionEffects from "@/components/TransitionEffects";
 
 interface UserDataType {
     designation: string;
+    name: string;
+    image: string;
+    message: string;
+    role: string;
     // Add other properties as needed
 }
 
