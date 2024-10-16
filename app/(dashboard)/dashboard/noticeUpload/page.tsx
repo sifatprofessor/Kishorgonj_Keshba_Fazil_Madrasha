@@ -77,7 +77,7 @@ const Page: React.FC = () => {
             <h1 className="text-3xl font-bold underline mb-4">All Notice</h1>
             {loadingIndicator}
             {data.length > 0 ? (
-                <Card className="w-full overflow-scroll Navbar">
+                <Card placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }} className="w-full overflow-scroll Navbar">
                     <table className="w-full min-w-max table-auto text-left">
                         <thead>
                             <tr>
@@ -90,6 +90,7 @@ const Page: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal leading-none opacity-70"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {head}
                                         </Typography>
@@ -105,6 +106,7 @@ const Page: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {indexOfFirstItem + index + 1}
                                         </Typography>
@@ -114,6 +116,7 @@ const Page: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {title}
                                         </Typography>
@@ -123,6 +126,7 @@ const Page: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             <Link href={file}>
                                                 <FaFilePdf className="text-red-400 text-3xl" />
@@ -134,12 +138,14 @@ const Page: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             {time}
                                         </Typography>
                                     </td>
                                     <td className="p-4 flex gap-4">
                                         <Button
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                             onClick={() => {
                                                 handleDeleteNotice(_id);
                                             }}
@@ -152,6 +158,7 @@ const Page: React.FC = () => {
                                             variant="small"
                                             color="blue-gray"
                                             className="font-medium"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                         >
                                             Edit
                                         </Typography>
@@ -169,6 +176,7 @@ const Page: React.FC = () => {
             <div className="flex justify-center mt-4">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <Button
+                        placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                         key={index}
                         onClick={() => paginate(index + 1)}
                         className={`mx-1 ${currentPage === index + 1 ? "Navbar text-black font-bold text-xl" : ""

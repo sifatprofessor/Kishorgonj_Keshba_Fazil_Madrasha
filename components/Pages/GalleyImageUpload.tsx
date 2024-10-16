@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { BaseURL } from "@/utils/constant";
 import { UploadButton } from "@/utils/uploadthing";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
     Card,
     Input,
@@ -15,7 +15,6 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState, FormEvent } from "react";
 import { DayPicker } from "react-day-picker";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 export function GalleryImageUpload() {
@@ -175,7 +174,7 @@ export function GalleryImageUpload() {
                                 placeholder="" color="green" className="font-normal">
                                 Image Uploaded:{" "}
                                 <Link href={pdfUrl}>
-                                    <img src={pdfUrl} />
+                                    <img src={pdfUrl} alt="image" />
                                 </Link>
                             </Typography>
                         ) : null}

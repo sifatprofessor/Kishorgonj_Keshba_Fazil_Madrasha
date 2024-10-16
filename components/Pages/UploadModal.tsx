@@ -1,29 +1,22 @@
 "use client";
 import { BaseURL } from "@/utils/constant";
 import { UploadButton } from "@/utils/uploadthing";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import {
     Card,
     Input,
     Button,
     Typography,
-    PopoverContent,
-    Popover,
-    PopoverHandler,
 } from "@material-tailwind/react";
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { DayPicker } from "react-day-picker";
+import { useState } from "react";
 import { FaFilePdf } from "react-icons/fa6";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 export function UploadSection() {
     const [pdfUrl, setPdfUrl] = useState<string>("");
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [date, setDate] = useState<Date | undefined>();
 
     const time = new Date().toLocaleDateString();
 

@@ -39,6 +39,7 @@ const DashboardPieChart: React.FC<DashboardPieChartProps> = ({ data }) => {
             },
             tooltip: {
                 callbacks: {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     label: function (tooltipItem: any) {
                         return `${tooltipItem.label}: ${tooltipItem.raw}`;
                     },

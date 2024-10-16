@@ -1,6 +1,5 @@
 import React from 'react';
 import { CarouselDefault } from './Carousel';
-import Marquee from 'react-fast-marquee';
 import ScrollNotice from './NoticeScroll';
 
 const Banner: React.FC = () => {

@@ -9,7 +9,6 @@ const AcademicSyllabus: React.FC = () => {
             <div className='min-h-[50vh]'>
                 <h1 className="text-4xl text-center mt-10">Academic Syllabus</h1>
                 <div className="flex justify-center items-center h-full">
-                    // todo - add data
                     <h1 className="text-2xl">No Data Found</h1>
                 </div>
             </div>

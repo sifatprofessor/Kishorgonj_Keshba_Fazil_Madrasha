@@ -9,7 +9,7 @@ interface InputFieldProps {
     value: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     classes?: string;
-    [key: string]: any; // For any additional props
+    [key: string]: unknown; // For any additional props
 }
 
 const InputField: React.FC<InputFieldProps> = ({ type, name, placeholder, value, onChange, classes, ...rest }) => {
