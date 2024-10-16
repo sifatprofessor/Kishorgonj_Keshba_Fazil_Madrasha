@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Noto+Sans+Bengali:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Galada&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&display=swap');
+
+
+body {
+ font-family: 'Berkshire Swash', cursive;
+  background-image: url("https://utfs.io/f/1eb265aa-e8ff-46f6-a75d-cb71f9b08205-2f9.png");
+  background-size: 10%;
+}
+ 

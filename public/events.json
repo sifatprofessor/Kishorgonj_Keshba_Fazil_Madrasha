@@ -1,0 +1,12 @@
+[
+    {
+      "_id": "event_1",
+      "interviewerEmail": "interviewer@example.com",
+      "userEmail": "user@example.com",
+      "name": "Job Interview",
+      "selectedDate": "2024-02-10",
+      "time": "15:30",
+      "meetingLink": "https://meet.google.com/kyp-mdsi-vyn"
+    }
+   
+  ]
