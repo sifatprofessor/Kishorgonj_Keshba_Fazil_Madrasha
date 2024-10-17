@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-/* eslint-disable @next/next/no-img-element */
 import Banner from "@/components/Pages/Banner";
 import MapSection from "@/components/Pages/MapSection";
 

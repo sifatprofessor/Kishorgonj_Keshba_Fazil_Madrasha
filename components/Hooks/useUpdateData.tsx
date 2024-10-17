@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
 import { BaseURL } from "@/utils/constant";
 import { UploadButton } from "@/utils/uploadthing";
 import axios from "axios";
+import Image from "next/image";
 import { useState, FC, ChangeEvent } from "react";
 import { FaChair, FaMessage } from "react-icons/fa6";
 import Swal from "sweetalert2";
@@ -169,7 +168,10 @@ export const UseUpdateData: FC<UseUpdateDataProps> = ({ data }) => {
                             </label>
 
                             <div className="flex items-center justify-start gap-20">
-                                <img src={imageURL ? imageURL : data?.image} className="w-15 h-20 rounded-xl" />
+                                <Image
+                                    width={200}
+                                    height={200}
+                                    src={imageURL ? imageURL : data?.image} className="w-15 h-20 rounded-xl" alt={""} />
                                 <UploadButton
                                     endpoint="imageUploader"
                                     onClientUploadComplete={(res) => {

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { BaseURL } from "@/utils/constant";
 import { UploadButton } from "@/utils/uploadthing";
@@ -12,6 +11,7 @@ import {
     PopoverHandler,
 } from "@material-tailwind/react";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, FormEvent } from "react";
 import { DayPicker } from "react-day-picker";
@@ -168,7 +168,10 @@ export function GalleryImageUpload() {
                                 placeholder="" color="green" className="font-normal">
                                 Image Uploaded:{" "}
                                 <Link href={pdfUrl}>
-                                    <img src={pdfUrl} alt="image" />
+                                    <Image
+                                        width={200}
+                                        height={200}
+                                        src={pdfUrl} alt="image" />
                                 </Link>
                             </Typography>
                         ) : null}

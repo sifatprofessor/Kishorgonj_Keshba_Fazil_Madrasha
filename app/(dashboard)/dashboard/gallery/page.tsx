@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import UseLoader from "@/components/Loader/useLoader";
 import { GalleryImageUpload } from "@/components/Pages/GalleyImageUpload";
+import Image from "next/image";
 
 interface GalleryItem {
     _id: string;
@@ -117,7 +117,7 @@ const Gallery: React.FC = () => {
                                         </Typography>
                                     </td>
                                     <td className="p-4">
-                                        <img
+                                        <Image
                                             width={500}
                                             height={500}
                                             className="size-10 rounded-full bg-slate-500 object-cover"
