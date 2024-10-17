@@ -50,7 +50,7 @@ const NoticeSlider: React.FC<NoticeSliderProps> = ({ notices }) => {
                     >
                         <div className="flex items-center justify-between w-full Navbar mt-2 py-1 rounded-lg">
                             <p className="text-lg w-full px-2 py-1 rounded-l-lg"><span className="font-serif">{idx + 1}:</span> {notice?.title}</p>
-                            <Link href={`/notices/${notice?._id}`}>
+                            <Link href={notice?.file} target="_blank">
                                 <button className="px-2 text-lg rounded-r-lg">
                                     <FaFilePdf className="text-3xl" />
                                 </button>
