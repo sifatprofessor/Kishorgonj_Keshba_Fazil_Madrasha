@@ -1,10 +1,10 @@
 "use client";
 import { BaseURL } from "@/utils/constant";
-/* eslint-disable @next/next/no-img-element */
 import { Carousel } from "@material-tailwind/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import UseLoader from "../Loader/useLoader";
+import Image from "next/image";
 
 interface Image {
     imageUrl: string;
@@ -14,6 +14,7 @@ interface Image {
 export function CarouselDefault() {
     const [images, setImages] = useState<Image[]>([]);
     const [loadingIndicator, startLoading, stopLoading] = UseLoader();
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,18 +38,20 @@ export function CarouselDefault() {
                 <Carousel
                     loop={true}
                     autoplay={true}
-                    className="rounded-xl h-[450px] w-fit mb-4"
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                >
+                    className="rounded-xl h-[450px] w-fit mb-4 object-cover overflow-hidden" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                >
                     {images.map((image, index) => (
-                        <img
-                            key={index}
-                            src={image?.imageUrl}
-                            alt={image?.title}
-                            className="h-full w-full object-cover"
-                        />
+                        <div key={index} className="h-full w-full object-cover">
+                            <Image
+                                src={image?.imageUrl}
+                                alt={image?.title}
+                                width={1000}
+                                height={1}
+                                loading="eager"
+                                placeholder="blur"
+                                blurDataURL={image?.imageUrl}
+                                style={{ objectFit: "cover" }}
+                            />
+                        </div>
                     ))}
                 </Carousel>
             ) : (

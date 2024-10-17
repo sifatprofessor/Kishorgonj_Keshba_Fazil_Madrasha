@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import "@/components/Navbar/menu.css";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import Image from "next/image";
 
 interface ModalData {
     name: string;
@@ -20,10 +20,12 @@ export default function Modal1({ data }: ModalProps) {
     return (
         <div className="mx-auto w-fit" onClick={() => setOpenModal(true)}>
             <div
-                className="relative w-64 h-[250px] overflow-hidden rounded-lg focus:outline-none"
+                className="relative w-64 h-[300px] overflow-hidden rounded-lg focus:outline-none"
                 aria-label="View Principal's Message"
             >
-                <img
+                <Image
+                    width={400}
+                    height={600}
                     src={data?.image}
                     alt="Principal Message"
                     className="w-full h-full "
@@ -55,7 +57,9 @@ export default function Modal1({ data }: ModalProps) {
                     <div className="max-w-full mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg Modal">
                         <div className="mb-4 sm:mb-6">
                             <div>
-                                <img
+                                <Image
+                                    width={200}
+                                    height={200}
                                     src={data?.image}
                                     alt="Principal"
                                     className="w-24 sm:w-32 md:w-48 h-auto object-cover rounded-md float-left mr-2 sm:mr-4 mb-4"

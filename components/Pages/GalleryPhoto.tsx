@@ -1,10 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import { useEffect, useState } from "react";
 import UseLoader from "../Loader/useLoader";
 import axios from "axios";
 import { BaseURL } from "@/utils/constant";
 import TransitionEffects from "../TransitionEffects";
+import Image from "next/image";
 
 interface Slide {
     img: string;
@@ -59,13 +59,18 @@ export default function GalleryPhoto() {
                                     className={`${index === currentSlider ? "visible opacity-100" : "invisible opacity-0"} absolute inset-0 duration-500 ease-linear`}
                                     key={`index_${index}`}
                                 >
-                                    <img
-                                        src={img}
-                                        width="1200"
-                                        height="600"
-                                        alt={title}
-                                        className={`h-full w-full object-cover duration-500 ease-linear ${index === currentSlider ? "scale-100" : "scale-105"}`}
-                                    />
+                                    <div className={`h-full w-full object-cover duration-500 ease-linear ${index === currentSlider ? "scale-100" : "scale-105"}`}>
+                                        <Image
+                                            src={img}
+                                            width={1200}
+                                            height={600}
+                                            alt={title}
+                                            placeholder="blur"
+                                            blurDataURL={img}
+                                            className="object-cover w-full h-full"
+
+                                        />
+                                    </div>
                                     <div className="absolute inset-0 flex flex-col bg-black/40 p-5 text-center text-white drop-shadow-lg">
                                         <div className="mb-0 mt-auto rounded-md bg-white/40 p-3 backdrop-blur-3xl">
                                             <div className="mb-3 overflow-hidden text-xl font-semibold lg:text-3xl">
@@ -93,7 +98,7 @@ export default function GalleryPhoto() {
                         {data.map((slide, index) => {
                             const { img, title } = slide;
                             return (
-                                <img
+                                <Image
                                     key={index}
                                     src={img}
                                     width={1200}

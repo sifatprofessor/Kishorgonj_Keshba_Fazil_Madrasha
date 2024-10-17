@@ -2,6 +2,8 @@
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 interface PDFViewProps {
     params: {
@@ -30,6 +32,11 @@ const PDFView = (props: PDFViewProps) => {
             });
     }
         , [id]);
+    const docs = data ? [{
+        uri: data.file,
+        fileName: 'Notice'
+
+    }] : []; // Remote file
     return (
         <div>
             <button
@@ -38,11 +45,7 @@ const PDFView = (props: PDFViewProps) => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                 </svg></span> Go Back</button>
             {data && (
-                <iframe
-                    src={data?.file}
-                    className='w-full lg:w-[90%] h-[700px]'
-                    style={{ border: 'none' }}
-                />
+                <DocViewer documents={docs} pluginRenderers={DocViewerRenderers} />
             )}
         </div>
     )

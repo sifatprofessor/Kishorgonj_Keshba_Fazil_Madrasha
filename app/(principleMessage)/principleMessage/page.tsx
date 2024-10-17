@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 import UseLoader from "@/components/Loader/useLoader";
 import TransitionEffects from "@/components/TransitionEffects";
 import { BaseURL } from "@/utils/constant";
 import axios from "axios";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 interface PrincipleData {
@@ -47,7 +47,9 @@ const PrincipleMessage: React.FC = () => {
                         <div className="max-w-full mx-auto bg-white p-4 sm:p-6 md:p-8 rounded-lg Modal">
                             <div className="mb-4 sm:mb-6">
                                 <div>
-                                    <img
+                                    <Image
+                                        width={200}
+                                        height={200}
                                         src={data[0]?.image}
                                         alt="Principal"
                                         className="w-24 sm:w-32 md:w-48 h-auto object-cover rounded-md float-left mr-2 sm:mr-4 mb-4"

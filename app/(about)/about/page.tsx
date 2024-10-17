@@ -7,9 +7,9 @@ const AboutMadrasha: React.FC = () => {
         <>
             <TransitionEffects />
             <div className='min-h-[50vh]'>
-                <h1 className="text-4xl text-center mt-10">About Madrasha</h1>
+                <h1 className="text-4xl text-center mt-10  font-serif underline mb-2">About Madrasha</h1>
                 <div className="flex justify-center items-center h-full">
-                    <h1 className="text-2xl">No Data Found</h1>
+                    <h1 className="text-2xl font-serif">It&apos;s an educational institute situated at Kishorganj Sadar upazila under Nilphamari district.</h1>
                 </div>
             </div>
         </>

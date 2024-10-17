@@ -1,36 +1,35 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { Card, Typography, Button } from "@material-tailwind/react";
 import axios from "axios";
 import { BaseURL } from "@/utils/constant";
 import "@/components/Navbar/menu.css";
-import { FaDeleteLeft } from "react-icons/fa6";
+import Link from "next/link";
+import { FaDeleteLeft, FaFilePdf } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import UseLoader from "@/components/Loader/useLoader";
-import { GalleryImageUpload } from "@/components/Pages/GalleyImageUpload";
-import Image from "next/image";
+import { UploadSection } from "./UploadSection";
 
-interface GalleryItem {
+interface Notice {
     _id: string;
-    img: string;
     title: string;
-    date: string;
+    file: string;
+    time: string;
 }
 
-const Gallery: React.FC = () => {
-    const [data, setData] = useState<GalleryItem[]>([]);
+const Page: React.FC = () => {
+    const [data, setData] = useState<Notice[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [itemsPerPage] = useState<number>(10); // Adjust the number of items per page as needed
     const [loadingIndicator, startLoading, stopLoading] = UseLoader();
 
-    const TABLE_HEAD = ["S/N", "Title", "Image", "Date", "Action"];
+    const TABLE_HEAD = ["S/N", "Title", "File", "Time", "Action"];
 
     useEffect(() => {
         const fetchData = async () => {
             startLoading(); // Show loading indicator
             try {
-                const response = await axios.get(`${BaseURL}/api/gallery`);
+                const response = await axios.get(`${BaseURL}/api/routine`);
                 setData(response.data);
             } catch (err) {
                 console.error(err);
@@ -44,17 +43,16 @@ const Gallery: React.FC = () => {
 
     const handleDeleteNotice = async (id: string) => {
         try {
-            await axios.delete(`${BaseURL}/api/gallery/${id}`).then((res) => {
-                setData(data.filter((item) => item._id !== id));
-                if (res.status === 200) {
-                    Swal.fire({
-                        title: "Photo Deleted",
-                        text: "Image has been deleted successfully",
-                        icon: "success",
-                        confirmButtonText: "Ok",
-                    });
-                }
-            });
+            const res = await axios.delete(`${BaseURL}/api/noticepdf/${id}`);
+            setData(data.filter((item) => item._id !== id));
+            if (res.status === 200) {
+                Swal.fire({
+                    title: "Notice Deleted",
+                    text: "Notice has been deleted successfully",
+                    icon: "success",
+                    confirmButtonText: "Ok",
+                });
+            }
         } catch (error) {
             console.log(error);
         }
@@ -73,12 +71,12 @@ const Gallery: React.FC = () => {
 
     return (
         <>
-            <GalleryImageUpload />
+            <UploadSection />
 
-            <h1 className="text-3xl font-bold underline mb-4">All Photos</h1>
+            <h1 className="text-3xl font-bold underline mb-4">All Routine</h1>
             {loadingIndicator}
             {data.length > 0 ? (
-                <Card className="w-full overflow-scroll Navbar" shadow={false} color="transparent" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <Card placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }} className="w-full overflow-scroll Navbar">
                     <table className="w-full min-w-max table-auto text-left">
                         <thead>
                             <tr>
@@ -90,7 +88,9 @@ const Gallery: React.FC = () => {
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-normal leading-none opacity-70" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
+                                            className="font-normal leading-none opacity-70"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
+                                        >
                                             {head}
                                         </Typography>
                                     </th>
@@ -98,13 +98,15 @@ const Gallery: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.map(({ img, title, date, _id }, index) => (
+                            {currentItems.map(({ title, file, time, _id }, index) => (
                                 <tr key={index} className="even:bg-blue-gray-50/50">
                                     <td className="p-4">
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-normal" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
+                                            className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
+                                        >
                                             {indexOfFirstItem + index + 1}
                                         </Typography>
                                     </td>
@@ -112,32 +114,41 @@ const Gallery: React.FC = () => {
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-normal" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
+                                            className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
+                                        >
                                             {title}
                                         </Typography>
-                                    </td>
-                                    <td className="p-4">
-                                        <Image
-                                            width={500}
-                                            height={500}
-                                            className="size-10 rounded-full bg-slate-500 object-cover"
-                                            src={img}
-                                            alt={title}
-                                        />
                                     </td>
                                     <td className="p-4">
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-normal" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
-                                            {date}
+                                            className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
+                                        >
+                                            <Link href={file}>
+                                                <FaFilePdf className="text-red-400 text-3xl" />
+                                            </Link>
+                                        </Typography>
+                                    </td>
+                                    <td className="p-4">
+                                        <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
+                                        >
+                                            {time}
                                         </Typography>
                                     </td>
                                     <td className="p-4 flex gap-4">
                                         <Button
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                                             onClick={() => {
                                                 handleDeleteNotice(_id);
-                                            }} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
+                                            }}
+                                        >
                                             <FaDeleteLeft className="text-red-400" />
                                         </Button>
                                         <Typography
@@ -145,7 +156,9 @@ const Gallery: React.FC = () => {
                                             href="#"
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-medium" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
+                                            className="font-medium"
+                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
+                                        >
                                             Edit
                                         </Typography>
                                     </td>
@@ -153,7 +166,7 @@ const Gallery: React.FC = () => {
                             ))}
                         </tbody>
                     </table>
-                </Card >
+                </Card>
             ) : (
                 <p className="text-center text-2xl"></p>
             )}
@@ -162,9 +175,12 @@ const Gallery: React.FC = () => {
             <div className="flex justify-center mt-4">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <Button
+                        placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                         key={index}
                         onClick={() => paginate(index + 1)}
-                        className={`mx-1 ${currentPage === index + 1 ? "Navbar text-black font-bold text-xl" : ""}`} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                    >
+                        className={`mx-1 ${currentPage === index + 1 ? "Navbar text-black font-bold text-xl" : ""
+                            }`}
+                    >
                         {index + 1}
                     </Button>
                 ))}
@@ -173,4 +189,4 @@ const Gallery: React.FC = () => {
     );
 };
 
-export default Gallery;
+export default Page;
