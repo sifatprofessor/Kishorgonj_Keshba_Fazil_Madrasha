@@ -128,6 +128,19 @@ const DashNav: FC = () => {
                         </DashNavButton>
                     </Link>
                     <Link
+                        href={"/dashboard/routineUpload"}
+                        className="flex justify-center items-center"
+                    >
+                        <DashNavButton
+                            onClick={() => { }}
+                            className={`flex justify-start items-center  text-lg font-semibold gap-3 duration-500 btn glass w-full  ${isClicked && "btn glass"
+                                } ${pathname === "/dashboard/routineUpload" && "bg-transparent text-black"
+                                }`}
+                        >
+                            <FaPhotoFilm /> {isClicked ? "" : "Routine Upload"}
+                        </DashNavButton>
+                    </Link>
+                    <Link
                         href={"/dashboard/principle"}
                         className="flex justify-center items-center"
                     >
