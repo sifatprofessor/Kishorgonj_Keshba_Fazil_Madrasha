@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Calendar from 'react-calendar';
-import '../Styles/Calender.css'; // You will need to create this CSS file to style the calendar
+import '../Styles/Calender.css';
 
 export function CustomCalendar() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [value, setValue] = useState<Date>(new Date());
+
+    const value = new Date();
 
 
 
@@ -12,7 +12,7 @@ export function CustomCalendar() {
         <div className="calendar-container">
             <Calendar
                 value={value}
-                className="dark-calendar"
+                className="dark-calendar shadow-lg"
                 locale="en-US"
             />
         </div>

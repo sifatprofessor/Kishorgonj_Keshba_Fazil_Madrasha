@@ -15,8 +15,8 @@ interface NoticeLayoutProps {
 
 export default function NoticeLayout({ children }: NoticeLayoutProps) {
     return (
-        <section>
-            <Navbar data-testid="nab" />
+        <>
+            <Navbar />
             <section
                 style={{
                     position: "sticky",
@@ -31,6 +31,6 @@ export default function NoticeLayout({ children }: NoticeLayoutProps) {
 
             <div className="max-w-7xl mx-auto">{children}</div>
             <Footer />
-        </section>
+        </>
     );
 }

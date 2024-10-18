@@ -9,7 +9,6 @@ const ClassRoutine: React.FC = () => {
     const [pdfUrl, setPdfUrl] = React.useState<string>("");
     useEffect(() => {
         axios.get('/api/routine/teacher').then((res) => {
-            console.log(res.data[0].file);
             setPdfUrl(res.data[0].file);
         }
         ).catch((err) => {

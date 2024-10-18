@@ -79,7 +79,7 @@ function NavListMenu({ data }: NavListMenuProps) {
                     onPointerLeaveCapture={() => { }}
                 >
                     {buttons.Links.map((link, index) => (
-                        <Typography className="font-bold" key={index} as="a" href={link?.link} placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
+                        <Typography className="font-bold px-2" key={index} as="a" href={link?.link} placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
                             {link.name}
                         </Typography>
                     ))}
@@ -161,16 +161,24 @@ function NavList() {
                     ],
                 }}
             />
-            <Link href="/notices">
-                <button>
-                    <ListItem placeholder=""
-                        onPointerEnterCapture={() => { }}
-                        onPointerLeaveCapture={() => { }}
-                        className="flex items-center gap-2 py-2 pr-4 font-bold text-sm text-black">
-                        Notice
-                    </ListItem>
-                </button>
-            </Link>
+            <Typography
+                as="a"
+                href="notices"
+                variant="small"
+                color="blue-gray"
+                className="font-bold"
+                placeholder=""
+                onPointerEnterCapture={() => { }}
+                onPointerLeaveCapture={() => { }}
+            >
+                <ListItem
+                    placeholder=""
+                    onPointerEnterCapture={() => { }}
+                    onPointerLeaveCapture={() => { }}
+                    className="flex items-center gap-2 py-2 pr-4">
+                    Notices
+                </ListItem>
+            </Typography>
             <NavListMenu
                 data={{
                     buttonName: "Routine",
