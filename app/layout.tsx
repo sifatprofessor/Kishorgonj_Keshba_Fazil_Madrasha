@@ -38,11 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </head>
             <body>
                 <AuthProvider>
-                    {/* <QueryProvider>
-            <CartProvider> */}
                     <main>{children}</main>
-                    {/* </CartProvider>
-          </QueryProvider> */}
                 </AuthProvider>
             </body>
         </html>

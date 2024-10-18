@@ -38,20 +38,21 @@ export function CarouselDefault() {
                 <Carousel
                     loop={true}
                     autoplay={true}
-                    className="rounded-xl h-[450px] w-fit mb-4 object-cover overflow-hidden" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                >
+                    className="rounded-xl w-fit  max-h-[450px] mb-4 overflow-hidden" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                >
                     {images.map((image, index) => (
-                        <div key={index} className="h-full w-full object-cover">
-                            <Image
-                                src={image?.imageUrl}
-                                alt={image?.title}
-                                width={1000}
-                                height={1}
-                                loading="eager"
-                                placeholder="blur"
-                                blurDataURL={image?.imageUrl}
-                                style={{ objectFit: "cover" }}
-                            />
-                        </div>
+
+                        <Image
+                            key={index}
+                            src={image?.imageUrl}
+                            alt={image?.title}
+                            width={1000}
+                            height={1}
+                            loading="eager"
+                            placeholder="blur"
+                            blurDataURL={image?.imageUrl}
+                            style={{ objectFit: "cover" }}
+                            className="h-full w-full"
+                        />
                     ))}
                 </Carousel>
             ) : (

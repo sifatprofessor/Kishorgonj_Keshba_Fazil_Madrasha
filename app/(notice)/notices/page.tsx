@@ -3,7 +3,6 @@ import { BaseURL } from "@/utils/constant";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Card, Typography } from "@material-tailwind/react";
-import Link from "next/link";
 import { FaEye, FaFilePdf } from "react-icons/fa6";
 import UseLoader from "@/components/Loader/useLoader";
 import TransitionEffects from "@/components/TransitionEffects";
@@ -39,7 +38,6 @@ const Notice: React.FC = () => {
 
     const TABLE_HEAD = ["S/N", "Title", "File", "Time", "Action"];
 
-    console.log(notices);
 
     // Calculate the index of the first and last items on the current page
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -104,9 +102,18 @@ const Notice: React.FC = () => {
                                                 variant="small"
                                                 color="blue-gray"
                                                 className="font-normal" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                            >
-                                                <Link href={file}>
+                                                <Typography
+                                                    onPointerEnterCapture={undefined}
+                                                    onPointerLeaveCapture={undefined}
+                                                    placeholder={undefined}
+                                                    as="a"
+                                                    href={file}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-2"
+                                                >
                                                     <FaFilePdf className="text-red-400 text-3xl" />
-                                                </Link>
+                                                </Typography>
                                             </Typography>
                                         </td>
                                         <td className="p-4">
@@ -118,13 +125,19 @@ const Notice: React.FC = () => {
                                             </Typography>
                                         </td>
                                         <td className="p-4 flex gap-4">
-                                            <Link
+                                            <Typography
+                                                variant="small"
+                                                onPointerEnterCapture={undefined}
+                                                onPointerLeaveCapture={undefined}
+                                                placeholder={undefined}
+                                                as="a"
                                                 href={`/notices/${_id}`}
+                                                className="flex items-center gap-2"
                                             >
                                                 <Button placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                                                     <FaEye />
                                                 </Button>
-                                            </Link>
+                                            </Typography>
                                         </td>
                                     </tr>
                                 ))}

@@ -7,7 +7,7 @@ const Logout: FC = () => {
     return (
         <button
             onClick={() => signOut()}
-            className="text-black text-sm mt-1 font-bold transition-all duration-500 ease-in-out hover:bg-gray-400 py-1 px-2 rounded-xl"
+            className="text-gray-800 text-sm  font-semibold transition-all duration-500 ease-in-out hover:bg-gray-100 py-2 px-4 rounded-lg"
         >
             <Link href="/">
                 <p>Logout</p>
