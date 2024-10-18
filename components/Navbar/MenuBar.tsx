@@ -49,38 +49,29 @@ function NavListMenu({ data }: NavListMenuProps) {
                 allowHover={true}
             >
                 <MenuHandler>
-                    <Typography as="div" variant="small" className="font-bold" placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
+                    <Typography as="div" variant="small" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                         <ListItem
                             className="flex items-center gap-2 py-2 pr-4 font-bold text-black Navbar"
                             selected={isMenuOpen || isMobileMenuOpen}
-                            onClick={() => setIsMobileMenuOpen((cur) => !cur)}
-                            placeholder=""
-                            onPointerEnterCapture={() => { }}
-                            onPointerLeaveCapture={() => { }}
-                        >
+                            onClick={() => setIsMobileMenuOpen((cur) => !cur)} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                        >
                             {buttons?.buttonName}
                             <ChevronDownIcon
                                 strokeWidth={2.5}
-                                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
-                                    }`}
+                                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""}`}
                             />
                             <ChevronDownIcon
                                 strokeWidth={2.5}
-                                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
-                                    }`}
+                                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""}`}
                             />
                         </ListItem>
                     </Typography>
                 </MenuHandler>
-                <MenuList
-                    className="hidden rounded-xl lg:block Navbar text-black"
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                >
+                <MenuList className="hidden rounded-xl lg:block Navbar text-black" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     {buttons.Links.map((link, index) => (
-                        <Typography className="font-bold px-2" key={index} as="a" href={link?.link} placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}>
-                            {link.name}
+                        <Typography className="font-bold px-2" key={index} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                            <Link href={link?.link}>
+                                {link.name}
+                            </Link>
                         </Typography>
                     ))}
                 </MenuList>
@@ -88,23 +79,8 @@ function NavListMenu({ data }: NavListMenuProps) {
             <div className="block lg:hidden">
                 <Collapse open={isMobileMenuOpen}>
                     {buttons.Links.map((link, index) => (
-                        <Typography
-                            key={index}
-                            as="a"
-                            href={link.link}
-                            variant="small"
-                            color="black"
-                            className="font-bold"
-                            placeholder=""
-                            onPointerEnterCapture={() => { }}
-                            onPointerLeaveCapture={() => { }}
-                        >
-                            <ListItem
-                                className="flex items-center gap-2 py-2 pr-4"
-                                placeholder=""
-                                onPointerEnterCapture={() => { }}
-                                onPointerLeaveCapture={() => { }}
-                            >
+                        <Typography key={index} as="a" href={link.link} variant="small" color="black" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                            <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                                 {link.name}
                             </ListItem>
                         </Typography>
@@ -118,27 +94,9 @@ function NavListMenu({ data }: NavListMenuProps) {
 function NavList() {
     const session = useSession();
     return (
-        <List
-            className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1 Navbar"
-            placeholder=""
-            onPointerEnterCapture={() => { }}
-            onPointerLeaveCapture={() => { }}
-        >
-            <Typography
-                as="a"
-                href="/"
-                variant="small"
-                color="blue-gray"
-                className="font-bold "
-                placeholder=""
-                onPointerEnterCapture={() => { }}
-                onPointerLeaveCapture={() => { }}
-            >
-                <ListItem
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                    className="flex items-center gap-2 py-2 pr-4">
+        <List className="mb-6 mt-4 p-0 lg:mb-0 lg:mt-0 lg:flex-row lg:p-1 Navbar" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+            <Typography as="a" href="/" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     Home <FaHouseMedical />
                 </ListItem>
             </Typography>
@@ -146,8 +104,8 @@ function NavList() {
                 data={{
                     buttonName: "Administration & Other's Info",
                     Links: [
-                        { name: "Principle's Message", link: "principleMessage" },
-                        { name: "Founder's Message", link: "founderMessage" },
+                        { name: "Principle's Message", link: "/principleMessage" },
+                        { name: "Founder's Message", link: "/founderMessage" },
                     ],
                 }}
             />
@@ -155,27 +113,14 @@ function NavList() {
                 data={{
                     buttonName: "Academic",
                     Links: [
-                        { name: "Academic Calender", link: "academicCalender" },
-                        { name: "Academic Result", link: "academicResult" },
-                        { name: "Academic Syllabus", link: "academicSyllabus" },
+                        { name: "Academic Calender", link: "/academicCalender" },
+                        { name: "Academic Result", link: "/academicResult" },
+                        { name: "Academic Syllabus", link: "/academicSyllabus" },
                     ],
                 }}
             />
-            <Typography
-                as="a"
-                href="notices"
-                variant="small"
-                color="blue-gray"
-                className="font-bold"
-                placeholder=""
-                onPointerEnterCapture={() => { }}
-                onPointerLeaveCapture={() => { }}
-            >
-                <ListItem
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                    className="flex items-center gap-2 py-2 pr-4">
+            <Typography as="a" href="/notices" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     Notices
                 </ListItem>
             </Typography>
@@ -183,61 +128,24 @@ function NavList() {
                 data={{
                     buttonName: "Routine",
                     Links: [
-                        { name: "Class Routine", link: "classRoutine" },
-                        { name: "Exam Routine", link: "examRoutine" },
-                        { name: "Teacher's Schedule", link: "teacherRoutine" },
+                        { name: "Class Routine", link: "/classRoutine" },
+                        { name: "Exam Routine", link: "/examRoutine" },
+                        { name: "Teacher's Schedule", link: "/teacherRoutine" },
                     ],
                 }}
             />
-            <Typography
-                as="a"
-                href="gallery"
-                variant="small"
-                color="blue-gray"
-                className="font-bold"
-                placeholder=""
-                onPointerEnterCapture={() => { }}
-                onPointerLeaveCapture={() => { }}
-            >
-                <ListItem
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                    className="flex items-center gap-2 py-2 pr-4">
+            <Typography as="a" href="/gallery" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     Gallery <FaImage />
                 </ListItem>
             </Typography>
-            <Typography
-                as="a"
-                href="about"
-                variant="small"
-                color="blue-gray"
-                className="font-bold"
-                placeholder=""
-                onPointerEnterCapture={() => { }}
-                onPointerLeaveCapture={() => { }}
-            >
-                <ListItem placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                    className="flex items-center gap-2 py-2 pr-4">
+            <Typography as="a" href="/about" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     About Us
                 </ListItem>
             </Typography>
-            <Typography
-                as="a"
-                href="contact"
-                variant="small"
-                color="blue-gray"
-                className="font-bold"
-                placeholder=""
-                onPointerEnterCapture={() => { }}
-                onPointerLeaveCapture={() => { }}
-            >
-                <ListItem placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                    className="flex items-center gap-2 py-2 pr-4">
+            <Typography as="a" href="/contact" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     Contact<FaPerson />
                 </ListItem>
             </Typography>
@@ -246,39 +154,15 @@ function NavList() {
                     <Logout />
                 </div>
             ) : (
-                <Typography
-                    as="a"
-                    href="login"
-                    variant="small"
-                    color="blue-gray"
-                    className="font-bold"
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                >
-                    <ListItem placeholder=""
-                        onPointerEnterCapture={() => { }}
-                        onPointerLeaveCapture={() => { }}
-                        className="flex items-center gap-2 py-2 pr-4">
+                <Typography as="a" href="/login" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                    <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                         Login
                     </ListItem>
                 </Typography>
             )}
             {session.data ? (
-                <Typography
-                    as="a"
-                    href="dashboard"
-                    variant="small"
-                    color="blue-gray"
-                    className="font-bold"
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                >
-                    <ListItem placeholder=""
-                        onPointerEnterCapture={() => { }}
-                        onPointerLeaveCapture={() => { }}
-                        className="flex items-center gap-2 py-2 pr-4">
+                <Typography as="a" href="/dashboard" variant="small" color="blue-gray" className="font-bold" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                    <ListItem className="flex items-center gap-2 py-2 pr-4" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                         Dashboard
                     </ListItem>
                 </Typography>
@@ -302,24 +186,12 @@ export function MenuBar() {
     }, []);
 
     return (
-        <Navbar
-            className="max-w-full py-2 Navbar"
-            placeholder=""
-            onPointerEnterCapture={() => { }}
-            onPointerLeaveCapture={() => { }}
-        >
+        <Navbar className="max-w-full py-2 Navbar" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
             <div className="flex items-center justify-between text-blue-gray-900">
                 <div className="hidden lg:block">
                     <NavList />
                 </div>
-                <IconButton
-                    variant="text"
-                    className="lg:hidden"
-                    onClick={() => setOpenNav(!openNav)}
-                    placeholder=""
-                    onPointerEnterCapture={() => { }}
-                    onPointerLeaveCapture={() => { }}
-                >
+                <IconButton variant="text" className="lg:hidden" onClick={() => setOpenNav(!openNav)} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     {openNav ? (
                         <XMarkIcon className="h-6 w-6" strokeWidth={2} />
                     ) : (
@@ -330,10 +202,7 @@ export function MenuBar() {
             <Collapse open={openNav}>
                 <NavList />
                 <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-                    <Button placeholder=""
-                        onPointerEnterCapture={() => { }}
-                        onPointerLeaveCapture={() => { }}
-                        variant="outlined" size="sm" fullWidth>
+                    <Button variant="outlined" size="sm" fullWidth placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                         <Link href="/login">Login</Link>
                     </Button>
                 </div>
