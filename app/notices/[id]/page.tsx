@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import "@cyntler/react-doc-viewer/dist/index.css";
+import { BaseURL } from '@/utils/constant';
 
 interface PDFViewProps {
     params: {
@@ -11,19 +12,16 @@ interface PDFViewProps {
     }
 }
 
-
-
 const PDFView = (props: PDFViewProps) => {
     const router = useRouter();
     const { id } = props.params;
     interface NoticeData {
         file: string;
     }
-
     const [data, setData] = React.useState<NoticeData | null>(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/noticepdf/${id}`)
+        axios.get(`${BaseURL}/api/noticepdf/${id}`)
             .then(res => {
                 setData(res.data);
             })
@@ -36,7 +34,7 @@ const PDFView = (props: PDFViewProps) => {
         uri: data?.file,
         fileName: 'Notice'
 
-    }] : []; // Remote file
+    }] : [];
     return (
         <div>
             <button
