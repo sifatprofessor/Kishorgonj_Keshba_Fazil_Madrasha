@@ -1,4 +1,4 @@
-import "../../globals.css";
+import "../globals.css";
 
 interface LoginLayoutProps {
     children: React.ReactNode;
