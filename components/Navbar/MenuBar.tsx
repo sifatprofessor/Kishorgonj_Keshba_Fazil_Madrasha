@@ -171,7 +171,7 @@ function NavList() {
     );
 }
 
-export function MenuBar() {
+export default function MenuBar() {
     const [openNav, setOpenNav] = useState(false);
 
     useEffect(() => {

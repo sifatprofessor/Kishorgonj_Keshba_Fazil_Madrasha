@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import Banner from "@/components/Pages/Banner";
-import MapSection from "@/components/Pages/MapSection";
-
-import Running_Banner from "@/components/Pages/Marquee";
-import { BaseURL } from "@/utils/constant";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Modal1 from "@/components/Hooks/useModal";
+import dynamic from "next/dynamic";
+
+const Banner = dynamic(() => import("@/components/Pages/Banner"));
+const MapSection = dynamic(() => import("@/components/Pages/MapSection"));
+const Running_Banner = dynamic(() => import("@/components/Pages/Marquee"), { ssr: false });
+const Modal1 = dynamic(() => import("@/components/Hooks/useModal"));
 import UseLoader from "@/components/Loader/useLoader";
-import TransitionEffects from "@/components/TransitionEffects";
+const TransitionEffects = dynamic(() => import("@/components/TransitionEffects"));
+
+import { BaseURL } from "@/utils/constant";
 
 interface UserDataType {
     designation: string;

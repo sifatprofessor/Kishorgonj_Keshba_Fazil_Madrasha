@@ -1,7 +1,9 @@
 "use client";
-import Lottie from "lottie-react";
-import ErrorAnimation from "@/public/404.json";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import ErrorAnimation from "@/public/404.json";
 
 const NotFound: React.FC = () => {
     const router = useRouter();
