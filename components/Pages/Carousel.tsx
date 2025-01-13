@@ -48,7 +48,6 @@ export function CarouselDefault() {
                             width={1000}
                             height={1}
                             loading="eager"
-                            placeholder="blur"
                             blurDataURL={image?.imageUrl}
                             style={{ objectFit: "cover" }}
                             className="h-full w-full"

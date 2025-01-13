@@ -1,6 +1,9 @@
 'use client';
 import React, { useState, useCallback } from 'react';
-import Loading from './Loading';
+import dynamic from 'next/dynamic';
+
+const Loading = dynamic(() => import('./Loading'));
+
 
 type UseLoaderReturnType = [
     React.ReactNode,

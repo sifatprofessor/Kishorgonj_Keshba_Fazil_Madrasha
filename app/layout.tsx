@@ -1,10 +1,6 @@
-// import FBMessanger from "@/components/FBMessanger/FBMessanger";
-// import { CartProvider } from "@/utils/Cart/CartContext";
-// import { QueryProvider } from "@/utils/QueryClientProvider";
 import AuthProvider from "@/utils/SessionProvider";
-// import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import Script from "next/script";
+// import Script from "next/script";
 import { Metadata } from "next";
 
 export async function generateMetadata({ }: { params: unknown }): Promise<Metadata> {
@@ -21,7 +17,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en">
-            <head>
+            {/* <head>
                 <Script
                     async
                     src="https://www.googletagmanager.com/gtag/js?id=G-84C4EWC79S"
@@ -35,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           gtag('config', 'G-84C4EWC79S');
   `}
                 </Script>
-            </head>
+            </head> */}
             <body>
                 <AuthProvider>
                     <main>{children}</main>
