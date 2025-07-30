@@ -59,7 +59,7 @@ const Home: React.FC = () => {
     return (
         <>
             <TransitionEffects />
-            <main className="">
+            <main className="min-h-[90vh]">
                 <Running_Banner />
                 <Banner />
                 <MapSection />

@@ -11,44 +11,51 @@ interface Notice {
     title: string;
     file: string;
     time: string;
+    category: string; // দাখিল, আলিম, ফাজিল, কামিল
     _id: string;
 }
 
 const Notice: React.FC = () => {
     const [notices, setNotices] = useState<Notice[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [itemsPerPage] = useState<number>(10); // Adjust the number of items per page as needed
+    const [itemsPerPage] = useState<number>(10);
     const [loadingIndicator, startLoading, stopLoading] = UseLoader();
+    const [selectedCategory, setSelectedCategory] = useState<string>("সকল");
+
+    const categories = process.env.NEXT_PUBLIC_NOTICE_CATEGORIES?.split(",") || ["সকল"];
+
 
     useEffect(() => {
         const fetchData = async () => {
-            startLoading(); // Show loading indicator
+            startLoading();
             try {
                 const response = await axios.get(`${BaseURL}/api/noticepdf`);
                 setNotices(response.data);
             } catch (err) {
                 console.error(err);
             } finally {
-                stopLoading(); // Hide loading indicator
+                stopLoading();
             }
         };
 
-        fetchData(); // Only called once due to empty dependency array
+        fetchData();
     }, [startLoading, stopLoading]);
 
     const TABLE_HEAD = ["S/N", "Title", "File", "Time", "Action"];
 
+    // Filter based on selected category
+    const filteredNotices =
+        selectedCategory === "সকল"
+            ? notices
+            : notices.filter((notice) => notice.category === selectedCategory);
 
-    // Calculate the index of the first and last items on the current page
+    // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = notices.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredNotices.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredNotices.length / itemsPerPage);
 
-    // Change page
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-    // Number of pages required
-    const totalPages = Math.ceil(notices.length / itemsPerPage);
 
     return (
         <>
@@ -57,9 +64,28 @@ const Notice: React.FC = () => {
                 <h1 className="text-3xl font-bold underline mb-4 mt-4 lg:mt-12">
                     All Notice
                 </h1>
-                {notices.length > 0 ? (
-                    <Card
-                        className="w-full overflow-scroll Navbar" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+
+                {/* Filter Buttons */}
+                <div className="flex flex-wrap gap-4 justify-center mb-6">
+                    {categories.map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => {
+                                setSelectedCategory(category);
+                                setCurrentPage(1);
+                            }}
+                            className={`border rounded-md px-6 py-3 font-semibold text-lg ${selectedCategory === category
+                                ? "bg-teal-700 text-white"
+                                : "border-teal-700 text-teal-700"
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
+                {filteredNotices.length > 0 ? (
+                    <Card className="w-full overflow-scroll Navbar" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                         <table className="w-full min-w-max table-auto text-left">
                             <thead>
                                 <tr>
@@ -98,22 +124,15 @@ const Notice: React.FC = () => {
                                             </Typography>
                                         </td>
                                         <td className="p-4">
-                                            <Typography
-                                                variant="small"
-                                                color="blue-gray"
-                                                className="font-normal" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                            >
-                                                <Typography
-                                                    onPointerEnterCapture={undefined}
-                                                    onPointerLeaveCapture={undefined}
-                                                    placeholder={undefined}
-                                                    as="a"
+                                            <Typography variant="small" color="blue-gray" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
+                                                <a
                                                     href={file}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="flex items-center gap-2"
                                                 >
                                                     <FaFilePdf className="text-red-400 text-3xl" />
-                                                </Typography>
+                                                </a>
                                             </Typography>
                                         </td>
                                         <td className="p-4">
@@ -125,19 +144,11 @@ const Notice: React.FC = () => {
                                             </Typography>
                                         </td>
                                         <td className="p-4 flex gap-4">
-                                            <Typography
-                                                variant="small"
-                                                onPointerEnterCapture={undefined}
-                                                onPointerLeaveCapture={undefined}
-                                                placeholder={undefined}
-                                                as="a"
-                                                href={`/notices/${_id}`}
-                                                className="flex items-center gap-2"
-                                            >
+                                            <a href={`/notices/${_id}`} className="flex items-center gap-2">
                                                 <Button placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                                                     <FaEye />
                                                 </Button>
-                                            </Typography>
+                                            </a>
                                         </td>
                                     </tr>
                                 ))}
@@ -154,7 +165,8 @@ const Notice: React.FC = () => {
                         <Button
                             key={index}
                             onClick={() => paginate(index + 1)}
-                            className={`mx-1 ${currentPage === index + 1 ? "Navbar text-black font-bold text-xl" : ""}`} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                        >
+                            className={`mx-1 ${currentPage === index + 1
+                                ? "Navbar text-black font-bold text-xl" : ""}`} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                        >
                             {index + 1}
                         </Button>
                     ))}

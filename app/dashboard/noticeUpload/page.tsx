@@ -15,30 +15,34 @@ interface Notice {
     title: string;
     file: string;
     time: string;
+    category: string; // দাখিল, আলিম, ফাজিল, কামিল
 }
 
 const Page: React.FC = () => {
     const [data, setData] = useState<Notice[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [itemsPerPage] = useState<number>(10); // Adjust the number of items per page as needed
+    const [itemsPerPage] = useState<number>(10);
     const [loadingIndicator, startLoading, stopLoading] = UseLoader();
+    const [selectedCategory, setSelectedCategory] = useState<string>("সকল");
 
-    const TABLE_HEAD = ["S/N", "Title", "File", "Time", "Action"];
+    const categories = process.env.NEXT_PUBLIC_NOTICE_CATEGORIES?.split(",") || ["সকল"];
+
+    const TABLE_HEAD = ["S/N", "Title", "File", "Time", "Category", "Action"];
 
     useEffect(() => {
         const fetchData = async () => {
-            startLoading(); // Show loading indicator
+            startLoading();
             try {
                 const response = await axios.get(`${BaseURL}/api/noticepdf`);
                 setData(response.data);
             } catch (err) {
                 console.error(err);
             } finally {
-                stopLoading(); // Hide loading indicator
+                stopLoading();
             }
         };
 
-        fetchData(); // Only called once due to empty dependency array
+        fetchData();
     }, [startLoading, stopLoading]);
 
     const handleDeleteNotice = async (id: string) => {
@@ -58,25 +62,49 @@ const Page: React.FC = () => {
         }
     };
 
-    // Calculate the index of the first and last items on the current page
+    // Filter by selected category
+    const filteredData =
+        selectedCategory === "সকল"
+            ? data
+            : data.filter((notice) => notice.category === selectedCategory);
+
+    // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-    // Change page
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-    // Number of pages required
-    const totalPages = Math.ceil(data.length / itemsPerPage);
 
     return (
         <>
             <UploadSection />
 
             <h1 className="text-3xl font-bold underline mb-4">All Notice</h1>
+
+            {/* Filter Buttons */}
+            <div className="flex flex-wrap gap-4 justify-center mb-6">
+                {categories.map((category) => (
+                    <button
+                        key={category}
+                        onClick={() => {
+                            setSelectedCategory(category);
+                            setCurrentPage(1);
+                        }}
+                        className={`border rounded-md px-6 py-3 font-semibold text-lg ${selectedCategory === category
+                            ? "bg-teal-700 text-white"
+                            : "border-teal-700 text-teal-700"
+                            }`}
+                    >
+                        {category}
+                    </button>
+                ))}
+            </div>
+
             {loadingIndicator}
-            {data.length > 0 ? (
-                <Card placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }} className="w-full overflow-scroll Navbar">
+
+            {filteredData.length > 0 ? (
+                <Card className="w-full overflow-scroll Navbar" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                     <table className="w-full min-w-max table-auto text-left">
                         <thead>
                             <tr>
@@ -88,9 +116,7 @@ const Page: React.FC = () => {
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-normal leading-none opacity-70"
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                        >
+                                            className="font-normal leading-none opacity-70" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                                        >
                                             {head}
                                         </Typography>
                                     </th>
@@ -98,67 +124,22 @@ const Page: React.FC = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentItems.map(({ title, file, time, _id }, index) => (
-                                <tr key={index} className="even:bg-blue-gray-50/50">
+                            {currentItems.map(({ title, file, time, _id, category }, index) => (
+                                <tr key={_id} className="even:bg-blue-gray-50/50">
+                                    <td className="p-4">{indexOfFirstItem + index + 1}</td>
+                                    <td className="p-4">{title}</td>
                                     <td className="p-4">
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                        >
-                                            {indexOfFirstItem + index + 1}
-                                        </Typography>
+                                        <Link href={file} target="_blank">
+                                            <FaFilePdf className="text-red-400 text-3xl" />
+                                        </Link>
                                     </td>
-                                    <td className="p-4">
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                        >
-                                            {title}
-                                        </Typography>
-                                    </td>
-                                    <td className="p-4">
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                        >
-                                            <Link href={file}>
-                                                <FaFilePdf className="text-red-400 text-3xl" />
-                                            </Link>
-                                        </Typography>
-                                    </td>
-                                    <td className="p-4">
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                        >
-                                            {time}
-                                        </Typography>
-                                    </td>
+                                    <td className="p-4">{time}</td>
+                                    <td className="p-4">{category}</td>
                                     <td className="p-4 flex gap-4">
-                                        <Button
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                            onClick={() => {
-                                                handleDeleteNotice(_id);
-                                            }}
-                                        >
+                                        <Button onClick={() => handleDeleteNotice(_id)} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                                             <FaDeleteLeft className="text-red-400" />
                                         </Button>
-                                        <Typography
-                                            as="a"
-                                            href="#"
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-medium"
-                                            placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
-                                        >
+                                        <Typography as="a" href="#" className="font-medium" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}>
                                             Edit
                                         </Typography>
                                     </td>
@@ -168,19 +149,18 @@ const Page: React.FC = () => {
                     </table>
                 </Card>
             ) : (
-                <p className="text-center text-2xl"></p>
+                <p className="text-center text-xl text-gray-500">No notices available.</p>
             )}
 
             {/* Pagination Controls */}
             <div className="flex justify-center mt-4">
                 {Array.from({ length: totalPages }, (_, index) => (
                     <Button
-                        placeholder="" onPointerEnterCapture={() => { }} onPointerLeaveCapture={() => { }}
                         key={index}
                         onClick={() => paginate(index + 1)}
-                        className={`mx-1 ${currentPage === index + 1 ? "Navbar text-black font-bold text-xl" : ""
-                            }`}
-                    >
+                        className={`mx-1 ${currentPage === index + 1
+                            ? "Navbar text-black font-bold text-xl"
+                            : ""}`} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                    >
                         {index + 1}
                     </Button>
                 ))}
