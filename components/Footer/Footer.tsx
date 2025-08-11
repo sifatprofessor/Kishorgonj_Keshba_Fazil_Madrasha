@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import "./Footer.css";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa6";
 import Link from "next/link";
@@ -8,7 +9,7 @@ const Footer: FC = () => {
     return (
         <div data-testid="homeFooter">
             <footer className="font-sans lg:px-40 h-auto pt-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="grid grid-cols-1 lg:grid-cols-3">
                     <div className="px-4">
                         <h1 className="text-2xl underline font-semibold mb-4 text-white">
                             Important Links
@@ -92,6 +93,26 @@ const Footer: FC = () => {
                             </p>
                             <p className="text-white">মোবাইল: ০১৭৯৪৮০৩৬১২</p>
                         </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center mt-8 lg:mt-0 lg:border-l-2">
+                        <h2 className="text-xl font-semibold text-white mb-2">Developed BY:</h2>
+                        <img
+                            src="https://lc42d8585n.ufs.sh/f/buPepfzrG3gdS0XkWNxZt6FMJhwabsnBG2qxryEQoIKU3vuP"
+                            alt="Developer"
+                            className="w-24 h-24 rounded-full border-2 border-white mb-2 object-cover"
+                        />
+                        <p className="text-white font-medium">Md Abdur Rahman Sifat</p>
+                        <a
+                            href="https://mdabdurrahmansifat.vercel.app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-400 hover:underline text-lg font-black"
+                        >
+                            Portfolio
+                        </a>
+                        <a href="tel:+8801521788920" className="text-white mt-2 text-lg ">
+                            Contact: <span className="text-blue-400 hover:underline">+8801521-788920</span>
+                        </a>
                     </div>
                 </div>
                 <div className="border-t-2 text-white text-center">
